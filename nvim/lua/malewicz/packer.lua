@@ -42,4 +42,13 @@ return require('packer').startup(function(use)
 	  }
   }
 
+  use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+          'nvim-tree/nvim-web-devicons', -- optional
+      },
+  }
+
+  use {'christoomey/vim-tmux-navigator'}
+
   end)
