@@ -5,6 +5,7 @@ This repository hosts my personal configuration files and scripts for setting up
 ## Contents
 
 - `.zshrc`: Zsh configuration file to customize the shell environment.
+- `.tmux.conf`: Tmux configuration file.
 - `nvim/`: Directory containing NeoVim configurations, including Lua scripts for additional functionalities:
   - `init.lua`: Main configuration file for NeoVim.
   - `after/plugin/`: Contains Lua scripts to configure various NeoVim plugins like Fugitive, Harpoon, Telescope, etc.
