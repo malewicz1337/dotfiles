@@ -63,7 +63,7 @@ return require('packer').startup(function(use)
                 ts_config = {
                     lua = { 'string' }, -- it will not add a pair on that treesitter node
                     javascript = { 'template_string' },
-                    java = false, -- don't check treesitter on java
+                    java = false,       -- don't check treesitter on java
                 }
             })
         end
@@ -80,4 +80,15 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
+
+    use({
+        "stevearc/conform.nvim",
+        config = function()
+            require("conform").setup()
+        end,
+    })
+
+    use 'mfussenegger/nvim-lint'
+
+    use 'github/copilot.vim'
 end)
