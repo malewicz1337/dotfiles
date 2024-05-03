@@ -88,7 +88,7 @@ return require('packer').startup(function(use)
         end,
     })
 
-    use 'mfussenegger/nvim-lint'
+    use({ "mfussenegger/nvim-lint", event = { "BufReadPre", "BufNewFile" } })
 
     use 'github/copilot.vim'
 end)
