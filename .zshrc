@@ -178,3 +178,7 @@ eval $(thefuck --alias fk)
 eval "$(zoxide init zsh)"
 
 alias cd="z"
+
+
+# ---- Other aliases ----
+alias python="python3"
