@@ -6,32 +6,31 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-    sort = {
-        sorter = "case_sensitive",
-    },
-    view = {
-        width = 35,
-        relativenumber = true,
-    },
-    renderer = {
-        indent_markers = { enable = true, },
-        group_empty = true,
-    },
-    actions = {
-        open_file = {
-            window_picker = {
-                enable = false,
-            },
-        },
-    },
-    filters = {
-        custom = { '.DS_Store' },
-        dotfiles = false,
-    },
-    git = {
-        ignore = false,
-    },
-
+	sort = {
+		sorter = "case_sensitive",
+	},
+	view = {
+		width = 35,
+		relativenumber = true,
+	},
+	renderer = {
+		indent_markers = { enable = true },
+		group_empty = true,
+	},
+	actions = {
+		open_file = {
+			window_picker = {
+				enable = false,
+			},
+		},
+	},
+	filters = {
+		custom = { ".DS_Store" },
+		dotfiles = false,
+	},
+	git = {
+		ignore = false,
+	},
 })
 
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })

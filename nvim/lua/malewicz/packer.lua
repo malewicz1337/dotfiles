@@ -38,7 +38,7 @@ return require("packer").startup(function(use)
 			--- Uncomment the two plugins below if you want to manage the language servers from neovim
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
-
+			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 			{ "neovim/nvim-lspconfig" },
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
