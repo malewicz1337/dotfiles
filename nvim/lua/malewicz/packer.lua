@@ -92,4 +92,8 @@ return require("packer").startup(function(use)
 	use("mfussenegger/nvim-lint")
 
 	use("github/copilot.vim")
+
+	use("windwp/nvim-ts-autotag")
+
+	use("nanotee/sqls.nvim")
 end)

@@ -33,7 +33,9 @@ mason_lspconfig.setup({
 		"cssmodules_ls",
 		"clangd",
 		"bashls",
+		"volar",
 	},
+	automatic_installation = true,
 	--[[ handlers = {
 		function(server_name)
 			require("lspconfig")[server_name].setup({})
@@ -49,5 +51,6 @@ mason_tool_installer.setup({
 		"black", -- python formatter
 		"pylint",
 		"eslint_d",
+		"sql-formatter",
 	},
 })

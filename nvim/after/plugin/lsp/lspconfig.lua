@@ -87,4 +87,32 @@ mason_lspconfig.setup_handlers({
 			},
 		})
 	end,
+	["sqls"] = function()
+		-- configure sqls server
+		lspconfig["sqls"].setup({
+			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				local function on_format()
+					-- Manually trigger SQL formatting
+					local params = vim.lsp.util.make_formatting_params({})
+					client.request("textDocument/formatting", params, nil, bufnr)
+				end
+
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					callback = on_format,
+				})
+			end,
+			settings = {
+				sqls = {
+					formatter = {
+						sqlfmt = {
+							command = "sql-formatter",
+							args = { "--language", "sql", "--keywordCase", "upper" },
+						},
+					},
+				},
+			},
+		})
+	end,
 })
