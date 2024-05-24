@@ -38,6 +38,7 @@ end
 -- Function to check for ESLint configuration
 local function eslint_config_exists()
 	return file_exists(".eslintrc.js")
+		or file_exists(".eslintrc.cjs")
 		or file_exists(".eslintrc.json")
 		or file_exists(".eslintrc.yml")
 		or file_exists(".eslintrc.yaml")
@@ -49,9 +50,15 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 	pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.svelte", "*.vue" },
 	callback = function()
 		local eslint_cmd = "eslint_d"
+		local default_config_path = vim.fn.expand("~/.config/default_eslintrc.json")
+
 		if not eslint_config_exists() then
-			local default_config_path = vim.fn.expand("~/.config/default_eslintrc.json")
-			eslint_cmd = string.format("eslint_d --config %s", default_config_path)
+			if vim.fn.filereadable(default_config_path) == 1 then
+				eslint_cmd = string.format("eslint_d --config %s", default_config_path)
+			else
+				-- If the default config file does not exist, do nothing
+				return
+			end
 		end
 
 		lint.linters.eslint_d.cmd = eslint_cmd
