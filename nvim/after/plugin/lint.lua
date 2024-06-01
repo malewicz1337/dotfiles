@@ -1,7 +1,7 @@
 local lint = require("lint")
 
 lint.linters_by_ft = {
-	markdown = { "vale" },
+	markdown = { "markdownlint", "vale" },
 	javascript = { "eslint_d" },
 	typescript = { "eslint_d" },
 	javascriptreact = { "eslint_d" },
@@ -50,15 +50,16 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 	pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.svelte", "*.vue" },
 	callback = function()
 		local eslint_cmd = "eslint_d"
-		local default_config_path = vim.fn.expand("~/.config/default_eslintrc.json")
+		-- local default_config_path = vim.fn.expand("~/.config/default_eslintrc.json")
 
 		if not eslint_config_exists() then
-			if vim.fn.filereadable(default_config_path) == 1 then
+			--[[ if vim.fn.filereadable(default_config_path) == 1 then
 				eslint_cmd = string.format("eslint_d --config %s", default_config_path)
 			else
 				-- If the default config file does not exist, do nothing
 				return
-			end
+			end ]]
+			return
 		end
 
 		lint.linters.eslint_d.cmd = eslint_cmd
