@@ -96,4 +96,6 @@ return require("packer").startup(function(use)
 	use("windwp/nvim-ts-autotag")
 
 	use("nanotee/sqls.nvim")
+
+	use("ThePrimeagen/vim-be-good")
 end)
