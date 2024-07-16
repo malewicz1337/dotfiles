@@ -4,22 +4,39 @@
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
-	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.6",
-		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use({
 		"rose-pine/neovim",
 		name = "rose-pine",
 		config = function()
-			vim.cmd("colorscheme rose-pine")
+			vim.cmd("colorscheme rose-pine-moon")
+			-- vim.cmd("colorscheme rose-pine")
+			-- vim.cmd("colorscheme rose-pine-main")
+			-- vim.cmd("colorscheme rose-pine-moon")
+			-- vim.cmd("colorscheme rose-pine-dawn")
 		end,
 	})
+	-- use({
+	-- 	"folke/tokyonight.nvim",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme tokyonight")
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"catppuccin/nvim",
+	-- 	as = "catppuccin",
+	-- 	config = function()
+	-- 		require("catppuccin").setup()
+	-- 		vim.cmd("colorscheme catppuccin")
+	-- 	end,
+	-- })
+
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
 	use("nvim-lua/plenary.nvim")
@@ -35,7 +52,6 @@ return require("packer").startup(function(use)
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
 		requires = {
-			--- Uncomment the two plugins below if you want to manage the language servers from neovim
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
