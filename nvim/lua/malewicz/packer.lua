@@ -114,4 +114,11 @@ return require("packer").startup(function(use)
 	use("nanotee/sqls.nvim")
 
 	use("ThePrimeagen/vim-be-good")
+
+	use({
+		"kdheepak/lazygit.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
 end)
