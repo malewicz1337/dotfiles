@@ -1,5 +1,4 @@
 local lint = require("lint")
-
 lint.linters_by_ft = {
 	markdown = { "markdownlint", "vale" },
 	-- javascript = { "eslint_d" },
@@ -8,7 +7,6 @@ lint.linters_by_ft = {
 	-- typescriptreact = { "eslint_d" },
 	-- svelte = { "eslint_d" },
 	-- vue = { "eslint_d" },
-	python = { "ruff" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -87,12 +85,10 @@ return {
 			"svelte",
 			"astro",
 		},
-		-- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
 		root_dir = function(fname)
 			root_file = util.insert_package_json(root_file, "eslintConfig", fname)
 			return util.root_pattern(unpack(root_file))(fname)
 		end,
-		-- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
 		settings = {
 			validate = "on",
 			packageManager = nil,
@@ -112,10 +108,6 @@ return {
 			problems = {
 				shortenToSingleLine = false,
 			},
-			-- nodePath configures the directory in which the eslint server should start its node_modules resolution.
-			-- This path is relative to the workspace folder (root dir) of the server instance.
-			nodePath = "",
-			-- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
 			workingDirectory = { mode = "location" },
 			codeAction = {
 				disableRuleComment = {
@@ -128,15 +120,11 @@ return {
 			},
 		},
 		on_new_config = function(config, new_root_dir)
-			-- The "workspaceFolder" is a VSCode concept. It limits how far the
-			-- server will traverse the file system when locating the ESLint config
-			-- file (e.g., .eslintrc).
 			config.settings.workspaceFolder = {
 				uri = new_root_dir,
 				name = vim.fn.fnamemodify(new_root_dir, ":t"),
 			}
 
-			-- Support flat config
 			if
 				vim.fn.filereadable(new_root_dir .. "/eslint.config.js") == 1
 				or vim.fn.filereadable(new_root_dir .. "/eslint.config.mjs") == 1
@@ -148,7 +136,6 @@ return {
 				config.settings.experimental.useFlatConfig = true
 			end
 
-			-- Support Yarn2 (PnP) projects
 			local pnp_cjs = util.path.join(new_root_dir, ".pnp.cjs")
 			local pnp_js = util.path.join(new_root_dir, ".pnp.js")
 			if util.path.exists(pnp_cjs) or util.path.exists(pnp_js) then
@@ -193,36 +180,5 @@ return {
 			end,
 			description = "Fix all eslint problems for this buffer",
 		},
-	},
-	docs = {
-		description = [[
-https://github.com/hrsh7th/vscode-langservers-extracted
-
-`vscode-eslint-language-server` is a linting engine for JavaScript / Typescript.
-It can be installed via `npm`:
-
-```sh
-npm i -g vscode-langservers-extracted
-```
-
-`vscode-eslint-language-server` provides an `EslintFixAll` command that can be used to format a document on save:
-```lua
-lspconfig.eslint.setup({
-  --- ...
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
-```
-
-See [vscode-eslint](https://github.com/microsoft/vscode-eslint/blob/55871979d7af184bf09af491b6ea35ebd56822cf/server/src/eslintServer.ts#L216-L229) for configuration options.
-
-Messages handled in lspconfig: `eslint/openDoc`, `eslint/confirmESLintExecution`, `eslint/probeFailed`, `eslint/noLibrary`
-
-Additional messages you can handle: `eslint/noConfig`
-]],
 	},
 }

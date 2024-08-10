@@ -14,7 +14,7 @@ require("conform").setup({
 		graphql = { "prettier" },
 		liquid = { "prettier" },
 		lua = { "stylua" },
-		python = { "isort", "black" },
+		python = { "black", "isort" },
 		sql = { "sql-formatter" },
 	},
 	format_on_save = {

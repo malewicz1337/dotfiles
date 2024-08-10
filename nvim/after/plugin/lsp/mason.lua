@@ -17,40 +17,28 @@ mason_lspconfig.setup({
 		"tsserver",
 		"rust_analyzer",
 		"tailwindcss",
-		"svelte",
-		"sqls",
-		"pylsp",
-		"markdown_oxide",
 		"lua_ls",
 		"jsonls",
 		"html",
-		"grammarly",
 		"gopls",
 		"eslint",
 		"dockerls",
-		"docker_compose_language_service",
 		"cssls",
-		"cssmodules_ls",
 		"clangd",
 		"bashls",
 		"volar",
+		"pylsp",
 	},
 	automatic_installation = true,
-	--[[ handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({})
-		end,
-	}, ]]
 })
 
 mason_tool_installer.setup({
 	ensure_installed = {
-		"prettier", -- prettier formatter
-		"stylua", -- lua formatter
-		"isort", -- python formatter
-		"black", -- python formatter
-		"pylint",
+		"prettier",
+		"stylua",
+		"pyright",
 		"eslint_d",
-		"sql-formatter",
+		"black",
+		"isort",
 	},
 })

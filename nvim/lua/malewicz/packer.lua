@@ -11,31 +11,31 @@ return require("packer").startup(function(use)
 		tag = "0.1.6",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
-	use({
-		"rose-pine/neovim",
-		name = "rose-pine",
-		config = function()
-			vim.cmd("colorscheme rose-pine-moon")
-			-- vim.cmd("colorscheme rose-pine")
-			-- vim.cmd("colorscheme rose-pine-main")
-			-- vim.cmd("colorscheme rose-pine-moon")
-			-- vim.cmd("colorscheme rose-pine-dawn")
-		end,
-	})
+	-- use({
+	-- 	"rose-pine/neovim",
+	-- 	name = "rose-pine",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme rose-pine")
+	-- 		-- vim.cmd("colorscheme rose-pine")
+	-- 		-- vim.cmd("colorscheme rose-pine-main")
+	-- 		-- vim.cmd("colorscheme rose-pine-moon")
+	-- 		-- vim.cmd("colorscheme rose-pine-dawn")
+	-- 	end,
+	-- })
 	-- use({
 	-- 	"folke/tokyonight.nvim",
 	-- 	config = function()
 	-- 		vim.cmd("colorscheme tokyonight")
 	-- 	end,
 	-- })
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- 	config = function()
-	-- 		require("catppuccin").setup()
-	-- 		vim.cmd("colorscheme catppuccin")
-	-- 	end,
-	-- })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = function()
+			require("catppuccin").setup()
+			vim.cmd("colorscheme catppuccin")
+		end,
+	})
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
@@ -78,9 +78,9 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({
 				check_ts = true,
 				ts_config = {
-					lua = { "string" }, -- it will not add a pair on that treesitter node
+					lua = { "string" },
 					javascript = { "template_string" },
-					java = false, -- don't check treesitter on java
+					java = false,
 				},
 			})
 		end,
