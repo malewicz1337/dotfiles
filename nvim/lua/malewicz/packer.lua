@@ -111,14 +111,29 @@ return require("packer").startup(function(use)
 
 	use("windwp/nvim-ts-autotag")
 
-	use("nanotee/sqls.nvim")
-
-	use("ThePrimeagen/vim-be-good")
-
 	use({
 		"kdheepak/lazygit.nvim",
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
 	})
+	use({
+		"linux-cultist/venv-selector.nvim",
+		branch = "regexp",
+		requires = {
+			{ "neovim/nvim-lspconfig" },
+			{ "mfussenegger/nvim-dap" },
+			{ "mfussenegger/nvim-dap-python", opt = true },
+			{
+				"nvim-telescope/telescope.nvim",
+				branch = "0.1.x",
+				requires = { "nvim-lua/plenary.nvim" },
+			},
+		},
+		config = function()
+			local venv_selector = require("venv-selector")
+			venv_selector.setup()
+		end,
+	})
+	use("prisma/vim-prisma")
 end)

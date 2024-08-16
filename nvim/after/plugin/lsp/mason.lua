@@ -27,7 +27,8 @@ mason_lspconfig.setup({
 		"clangd",
 		"bashls",
 		"volar",
-		"pylsp",
+		"pyright",
+		"prismals",
 	},
 	automatic_installation = true,
 })

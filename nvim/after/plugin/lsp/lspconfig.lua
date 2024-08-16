@@ -31,21 +31,6 @@ mason_lspconfig.setup_handlers({
 			},
 		})
 	end,
-	["pylsp"] = function()
-		lspconfig["pylsp"].setup({
-			capabilities = capabilities,
-			settings = {
-				pylsp = {
-					plugins = {
-						pycodestyle = {
-							ignore = { "E501", "W503", "E203" },
-							maxLineLength = 120,
-						},
-					},
-				},
-			},
-		})
-	end,
 	["lua_ls"] = function()
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
