@@ -4,6 +4,7 @@ This repository hosts my personal configuration files and scripts for setting up
 
 ## Contents
 
+- `aerospcae.toml`: Aurospace tiling window manager config.
 - `.zshrc`: Zsh configuration file to customize the shell environment.
 - `.tmux.conf`: Tmux configuration file.
 - `nvim/`: Directory containing NeoVim configurations, including Lua scripts for additional functionalities:
