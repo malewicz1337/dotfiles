@@ -74,3 +74,5 @@ vim.keymap.set("n", "<leader>q", function()
 		vim.cmd("copen")
 	end
 end, { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>rf", ":bufdo edit!<CR>", { noremap = true, silent = true })
