@@ -46,4 +46,23 @@ mason_lspconfig.setup_handlers({
 			},
 		})
 	end,
+	["tsserver"] = function()
+		lspconfig["tsserver"].setup({
+			capabilities = capabilities,
+			root_dir = lspconfig.util.root_pattern("package.json"),
+		})
+	end,
+	["svelte"] = function()
+		lspconfig["svelte"].setup({
+			capabilities = capabilities,
+			on_attach = function(client)
+				vim.api.nvim_create_autocmd("BufWritePost", {
+					pattern = { "*.js", "*.ts" },
+					callback = function(ctx)
+						client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+					end,
+				})
+			end,
+		})
+	end,
 })

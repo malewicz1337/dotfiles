@@ -1,6 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
@@ -11,23 +8,23 @@ return require("packer").startup(function(use)
 		tag = "0.1.6",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
-	-- use({
-	-- 	"rose-pine/neovim",
-	-- 	name = "rose-pine",
-	-- 	config = function()
-	-- 		vim.cmd("colorscheme rose-pine")
-	-- 		-- vim.cmd("colorscheme rose-pine")
-	-- 		-- vim.cmd("colorscheme rose-pine-main")
-	-- 		-- vim.cmd("colorscheme rose-pine-moon")
-	-- 		-- vim.cmd("colorscheme rose-pine-dawn")
-	-- 	end,
-	-- })
 	use({
-		"folke/tokyonight.nvim",
+		"rose-pine/neovim",
+		name = "rose-pine",
 		config = function()
-			vim.cmd("colorscheme tokyonight")
+			vim.cmd("colorscheme rose-pine")
+			-- vim.cmd("colorscheme rose-pine")
+			-- vim.cmd("colorscheme rose-pine-main")
+			-- vim.cmd("colorscheme rose-pine-moon")
+			-- vim.cmd("colorscheme rose-pine-dawn")
 		end,
 	})
+	-- use({
+	-- 	"folke/tokyonight.nvim",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme tokyonight")
+	-- 	end,
+	-- })
 	-- use({
 	-- 	"catppuccin/nvim",
 	-- 	as = "catppuccin",
@@ -65,7 +62,7 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-tree/nvim-tree.lua",
 		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-tree/nvim-web-devicons",
 		},
 	})
 
@@ -74,20 +71,12 @@ return require("packer").startup(function(use)
 	use({
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup({
-				check_ts = true,
-				ts_config = {
-					lua = { "string" },
-					javascript = { "template_string" },
-					java = false,
-				},
-			})
-		end,
+		config = true,
 	})
 
 	use({
 		"numToStr/Comment.nvim",
+		requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
 		config = function()
 			require("Comment").setup()
 		end,

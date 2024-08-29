@@ -21,7 +21,6 @@ mason_lspconfig.setup({
 		"jsonls",
 		"html",
 		"gopls",
-		"eslint",
 		"dockerls",
 		"cssls",
 		"clangd",
