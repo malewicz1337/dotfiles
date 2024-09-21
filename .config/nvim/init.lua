@@ -1,1 +1,2 @@
-require("malewicz")
+require("malewicz.core")
+require("malewicz.lazy")

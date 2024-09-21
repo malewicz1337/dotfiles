@@ -1,2 +1,1 @@
-require("malewicz.remap")
-require("malewicz.set")
+require("malewicz.core")
