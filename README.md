@@ -3,14 +3,25 @@
 This repository hosts my personal configuration files and scripts for setting up a development environment. It is tailored for Unix-like operating systems and includes configurations for Zsh, NeoVim, and various plugins to enhance the development workflow.
 
 ## Contents
+aerospace
+Updated structure, added wezterm config
+last month
+nvim
+feat: packer -> lazy nvim config
+last week
+wezterm
 
-- `aerospcae.toml`: Aurospace tiling window manager config.
-- `.zshrc`: Zsh configuration file to customize the shell environment.
-- `.tmux.conf`: Tmux configuration file.
-- `nvim/`: Directory containing NeoVim configurations, including Lua scripts for additional functionalities:
-  - `init.lua`: Main configuration file for NeoVim.
-  - `after/plugin/`: Contains Lua scripts to configure various NeoVim plugins like Fugitive, Harpoon, Telescope, etc.
-  - `lua/malewicz/`: Custom Lua modules to extend NeoVim features.
+
+- `.zshrc`
+- `.tmux.conf`
+- `.config/`
+- - `nvim/`
+    - `init.lua`
+    - `after/plugin/`
+    - `lua/malewicz/`
+  - `aerospace/`
+    - `aerospcae.toml`
+  - `wezterm/`
 
 ## Getting Started
 
