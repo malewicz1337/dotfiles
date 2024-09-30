@@ -22,6 +22,7 @@ wezterm
   - `aerospace/`
     - `aerospcae.toml`
   - `wezterm/`
+    - `wezterm.lua`
 
 ## Getting Started
 
