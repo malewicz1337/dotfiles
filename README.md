@@ -15,7 +15,7 @@ wezterm
 - `.zshrc`
 - `.tmux.conf`
 - `.config/`
-- - `nvim/`
+  - `nvim/`
     - `init.lua`
     - `after/plugin/`
     - `lua/malewicz/`
