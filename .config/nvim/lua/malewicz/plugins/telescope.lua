@@ -30,5 +30,21 @@ return {
 		vim.keymap.set("n", "<leader>pg", builtin.live_grep, {})
 		vim.keymap.set("n", "<leader>pm", builtin.marks, {})
 		vim.keymap.set("n", "<leader>ps", builtin.grep_string, {})
+		vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
+
+		local vault_path = "/Users/malewicz/Documents/Obsidian Vault/"
+		vim.keymap.set("n", "<leader>on", function()
+			vim.cmd("vsplit")
+			vim.cmd("tcd " .. vault_path)
+			builtin.find_files({
+				cwd = vault_path,
+			})
+		end, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>oo", function()
+			vim.cmd("tcd " .. vault_path)
+			builtin.find_files({
+				cwd = vault_path,
+			})
+		end, { noremap = true, silent = true })
 	end,
 }

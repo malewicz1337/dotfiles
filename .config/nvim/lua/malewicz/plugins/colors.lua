@@ -13,15 +13,14 @@ return {
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
-		-- vim.cmd("colorscheme rose-pine")
 		-- vim.cmd("colorscheme rose-pine-main")
 		-- vim.cmd("colorscheme rose-pine-moon")
 		-- vim.cmd("colorscheme rose-pine-dawn")
 	end,
-	-- 	"folke/tokyonight.nvim",
-	-- 	config = function()
-	-- 		vim.cmd("colorscheme tokyonight")
-	-- 	end,
+	-- "folke/tokyonight.nvim",
+	-- config = function()
+	-- 	vim.cmd("colorscheme tokyonight")
+	-- end,
 	-- 	"catppuccin/nvim",
 	-- 	as = "catppuccin",
 	-- 	config = function()

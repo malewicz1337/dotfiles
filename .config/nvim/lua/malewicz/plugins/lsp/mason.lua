@@ -22,7 +22,6 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				-- "tsserver",
 				"ts_ls",
 				"html",
 				"cssls",
@@ -30,27 +29,30 @@ return {
 				"svelte",
 				"lua_ls",
 				"graphql",
+				"rust_analyzer",
 				"emmet_ls",
 				"prismals",
 				"pyright",
-				"rust_analyzer",
 				"jsonls",
 				"gopls",
 				"dockerls",
 				"clangd",
 				"bashls",
 				"volar",
+				-- "eslint",
 			},
 		})
 
 		mason_tool_installer.setup({
 			ensure_installed = {
+				"codelldb",
 				"prettier",
-				"stylua",
 				"eslint_d",
+				"stylua",
 				"black",
 				"isort",
 				"pylint",
+				-- "markdownlint",
 			},
 		})
 	end,

@@ -1,6 +1,10 @@
-vim.cmd("let g:netrw_liststyle = 3")
--- vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 3
 
+vim.cmd([[
+  autocmd FileType markdown setlocal conceallevel=2
+]])
+
+vim.opt.splitright = true
 vim.opt.guicursor = ""
 
 vim.opt.number = true
@@ -37,3 +41,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+vim.opt.showmode = false
+vim.opt.autoread = true
+vim.opt.wildmenu = true
+vim.opt.linebreak = true
+vim.opt.lazyredraw = true

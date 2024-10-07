@@ -4,6 +4,7 @@ return {
 	build = ":TSUpdate",
 	dependencies = {
 		"windwp/nvim-ts-autotag",
+		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
@@ -15,7 +16,9 @@ return {
 				enable = true,
 				additional_vim_regex_highlighting = false,
 			},
-			indent = { enable = true },
+			indent = {
+				enable = true,
+			},
 			autotag = {
 				enable = true,
 			},
@@ -54,8 +57,8 @@ return {
 					node_decremental = "<bs>",
 				},
 			},
-			modules = {},
 			ignore_install = {},
+			modules = {},
 		})
 	end,
 }
