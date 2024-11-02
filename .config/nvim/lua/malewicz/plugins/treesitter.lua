@@ -47,6 +47,7 @@ return {
 				"rust",
 				"go",
 				"python",
+				"c_sharp",
 			},
 			incremental_selection = {
 				enable = true,

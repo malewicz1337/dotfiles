@@ -6,6 +6,7 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 	},
+	lazy = false,
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
@@ -23,28 +24,26 @@ return {
 			},
 		})
 
-		local builtin = require("telescope.builtin")
 		telescope.load_extension("fzf")
-		vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
-		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-		vim.keymap.set("n", "<leader>pg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>pm", builtin.marks, {})
-		vim.keymap.set("n", "<leader>ps", builtin.grep_string, {})
-		vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
+		local opts = { noremap = true, silent = true }
+
+		vim.keymap.set("n", "<leader>pf", ":Telescope find_files<CR>", opts)
+		vim.keymap.set("n", "<C-p>", ":Telescope git_files<CR>", opts)
+		vim.keymap.set("n", "<leader>pg", ":Telescope live_grep<CR>", opts)
+		vim.keymap.set("n", "<leader>pm", ":Telescope marks<CR>", opts)
+		vim.keymap.set("n", "<leader>ps", ":Telescope grep_string<CR>", opts)
+		vim.keymap.set("n", "<leader>pd", ":Telescope diagnostics<CR>", opts)
 
 		local vault_path = "/Users/malewicz/Documents/Obsidian Vault/"
 		vim.keymap.set("n", "<leader>on", function()
 			vim.cmd("vsplit")
 			vim.cmd("tcd " .. vault_path)
-			builtin.find_files({
-				cwd = vault_path,
-			})
-		end, { noremap = true, silent = true })
+			require("telescope.builtin").find_files({ cwd = vault_path })
+		end, opts)
+
 		vim.keymap.set("n", "<leader>oo", function()
 			vim.cmd("tcd " .. vault_path)
-			builtin.find_files({
-				cwd = vault_path,
-			})
-		end, { noremap = true, silent = true })
+			require("telescope.builtin").find_files({ cwd = vault_path })
+		end, opts)
 	end,
 }

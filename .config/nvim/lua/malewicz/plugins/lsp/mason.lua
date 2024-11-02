@@ -39,6 +39,7 @@ return {
 				"clangd",
 				"bashls",
 				"volar",
+				-- "csharp_ls",
 				-- "eslint",
 			},
 		})
@@ -52,7 +53,7 @@ return {
 				"black",
 				"isort",
 				"pylint",
-				-- "markdownlint",
+				"stylelint",
 			},
 		})
 	end,

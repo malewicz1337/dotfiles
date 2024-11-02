@@ -13,6 +13,7 @@ return {
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
 	},
+	lazy = false,
 	config = function()
 		local cmp = require("cmp")
 
@@ -31,10 +32,6 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			-- 	["<c-y>"] = cmp.mapping.confirm({ select = false }),
-			-- 	["<c-e>"] = cmp.mapping.abort(),
-			-- 	["<up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-			-- 	["<down>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
