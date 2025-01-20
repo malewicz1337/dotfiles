@@ -1,5 +1,12 @@
 vim.g.netrw_liststyle = 3
 
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = true,
+})
+
 vim.cmd([[
   autocmd FileType markdown setlocal conceallevel=2
 ]])
@@ -47,3 +54,12 @@ vim.opt.autoread = true
 vim.opt.wildmenu = true
 vim.opt.linebreak = true
 vim.opt.lazyredraw = true
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight yanked text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.api.nvim_set_hl(0, "YankHighlight", { bg = "white", fg = "black" })
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 100 })
+	end,
+})

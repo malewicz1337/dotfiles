@@ -1,16 +1,9 @@
 return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
+	lazy = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		-- {
-		-- 	"nvim-telescope/telescope.nvim",
-		-- 	tag = "0.1.8",
-		-- 	dependencies = {
-		-- 		"nvim-lua/plenary.nvim",
-		-- 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		-- 	},
-		-- },
 	},
 
 	config = function()
@@ -40,7 +33,6 @@ return {
 			harpoon:list():select(4)
 		end)
 
-		-- Toggle previous & next buffers stored within Harpoon list
 		vim.keymap.set("n", "<leader>hn", function()
 			harpoon:list():prev()
 		end)

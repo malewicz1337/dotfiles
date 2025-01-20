@@ -10,7 +10,6 @@ return {
 			build = "make install_jsregexp",
 		},
 		"saadparwaiz1/cmp_luasnip",
-		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
 	},
 	lazy = false,
@@ -63,7 +62,10 @@ return {
 			}),
 
 			formatting = {
+				fields = { "kind", "abbr", "menu" },
+				expandable_indicator = true,
 				format = lspkind.cmp_format({
+					mode = "symbol_text",
 					maxwidth = 50,
 					ellipsis_char = "...",
 				}),

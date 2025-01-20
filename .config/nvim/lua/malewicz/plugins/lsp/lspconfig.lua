@@ -40,12 +40,6 @@ return {
 					capabilities = capabilities,
 				})
 			end,
-			-- ["ts_ls"] = function()
-			-- 	lspconfig["ts_ls"].setup({
-			-- 		capabilities = capabilities,
-			-- 		root_dir = lspconfig.util.root_pattern("package.json"),
-			-- 	})
-			-- end,
 			["rust_analyzer"] = function() end,
 			["pyright"] = function()
 				lspconfig["pyright"].setup({

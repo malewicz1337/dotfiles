@@ -23,15 +23,12 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"ts_ls",
-				"html",
 				"cssls",
 				"tailwindcss",
 				"svelte",
 				"lua_ls",
-				"graphql",
 				"rust_analyzer",
 				"emmet_ls",
-				"prismals",
 				"pyright",
 				"jsonls",
 				"gopls",
@@ -39,9 +36,8 @@ return {
 				"clangd",
 				"bashls",
 				"volar",
-				-- "csharp_ls",
-				-- "eslint",
 			},
+			automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
