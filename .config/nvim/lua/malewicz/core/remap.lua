@@ -39,9 +39,9 @@ vim.keymap.set("n", "<leader>q", function()
 	end
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>rf", ":bufdo edit!<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>b", ":bprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>n", ":bnext<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>db", ":bd<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
