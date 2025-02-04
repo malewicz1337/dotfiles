@@ -5,7 +5,7 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			{ "folke/neodev.nvim", opts = {} },
+			{ "folke/neodev.nvim",                   opts = {} },
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -28,12 +28,6 @@ return {
 			})
 
 			local capabilities = cmp_nvim_lsp.default_capabilities()
-
-			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
