@@ -5,8 +5,19 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
-					"vimdoc", "javascript", "typescript", "c", "lua", "rust",
-					"bash", "svelte", "python", "c_sharp", "go", "dockerfile",
+					"vimdoc",
+					"javascript",
+					"typescript",
+					"c",
+					"lua",
+					"rust",
+					"bash",
+					"svelte",
+					"python",
+					"c_sharp",
+					"go",
+					"dockerfile",
+					"zig",
 				},
 
 				sync_install = false,
@@ -14,7 +25,7 @@ return {
 				auto_install = true,
 
 				indent = {
-					enable = true
+					enable = true,
 				},
 
 				highlight = {
@@ -54,6 +65,6 @@ return {
 			}
 
 			vim.treesitter.language.register("templ", "templ")
-		end
-	}
+		end,
+	},
 }

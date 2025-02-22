@@ -45,3 +45,13 @@ vim.keymap.set("n", "<leader>b", ":bprevious<CR>", { noremap = true, silent = tr
 vim.keymap.set("n", "<leader>n", ":bnext<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { silent = true })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { silent = true })
+vim.keymap.set("n", "<leader>sc", ":close<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader><left>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<leader><right>", ":vertical resize +2<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader><up>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<leader><down>", ":resize +2<CR>", { silent = true })

@@ -29,7 +29,7 @@ return {
 				},
 			})
 			require("conform.formatters").golines = {
-				prepend_args = { "--max-len=80" },
+				prepend_args = { "-m", "80", "-w" },
 			}
 
 			local cmp = require("cmp")
@@ -49,9 +49,6 @@ return {
 					"prettier",
 					"eslint_d",
 					"stylua",
-					"black",
-					"isort",
-					"pylint",
 					"stylelint",
 					"golines",
 					"golangci-lint",
@@ -67,11 +64,10 @@ return {
 					"ts_ls",
 					"tailwindcss",
 					"svelte",
-					"pyright",
 					"zls",
 					"omnisharp",
 					"dockerls",
-					"docker_compose_language_service"
+					"docker_compose_language_service",
 				},
 				handlers = {
 					function(server_name)
@@ -90,8 +86,8 @@ return {
 									staticcheck = true,
 									usePlaceholders = true,
 									completeUnimported = true,
-								}
-							}
+								},
+							},
 						})
 					end,
 					zls = function()
@@ -210,5 +206,5 @@ return {
 				},
 			})
 		end,
-	}
+	},
 }
