@@ -29,8 +29,6 @@ vim.opt.expandtab = false
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -56,7 +54,6 @@ vim.opt.linebreak = true
 vim.opt.lazyredraw = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight yanked text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.api.nvim_set_hl(0, "YankHighlight", { bg = "white", fg = "black" })

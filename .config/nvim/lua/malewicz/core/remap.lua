@@ -50,8 +50,21 @@ vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { silent = true })
 vim.keymap.set("n", "<leader>sh", ":split<CR>", { silent = true })
 vim.keymap.set("n", "<leader>sc", ":close<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader><left>", ":vertical resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<leader><right>", ":vertical resize +2<CR>", { silent = true })
+local function ResizeMode()
+	while true do
+		local char = vim.fn.nr2char(vim.fn.getchar())
+		if char == "h" then
+			vim.cmd("vertical resize +2")
+		elseif char == "l" then
+			vim.cmd("vertical resize -2")
+		elseif char == "j" then
+			vim.cmd("resize -2")
+		elseif char == "k" then
+			vim.cmd("resize +2")
+		elseif char == "q" then
+			break
+		end
+	end
+end
 
-vim.keymap.set("n", "<leader><up>", ":resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<leader><down>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<leader>r", ResizeMode, { noremap = true, silent = true })

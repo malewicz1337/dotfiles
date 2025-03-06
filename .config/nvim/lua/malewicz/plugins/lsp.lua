@@ -21,6 +21,7 @@ return {
 					lua = { "stylua" },
 					go = { "golines", "goimports", "gofmt" },
 					rust = { "rustfmt", lsp_format = "fallback" },
+					cs = { "csharpier" },
 				},
 				format_on_save = {
 					lsp_fallback = true,
@@ -40,6 +41,8 @@ return {
 				vim.lsp.protocol.make_client_capabilities(),
 				cmp_lsp.default_capabilities()
 			)
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			require("fidget").setup({})
 			require("mason").setup()
@@ -50,6 +53,7 @@ return {
 					"eslint_d",
 					"stylua",
 					"stylelint",
+					"csharpier",
 					"golines",
 					"golangci-lint",
 				},
@@ -73,6 +77,14 @@ return {
 					function(server_name)
 						require("lspconfig")[server_name].setup({
 							capabilities = capabilities,
+						})
+					end,
+
+					omnisharp = function()
+						local pid = vim.fn.getpid()
+						require("lspconfig").omnisharp.setup({
+							capabilities = capabilities,
+							cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
 						})
 					end,
 
@@ -119,22 +131,6 @@ return {
 						})
 					end,
 					rust_analyzer = function() end,
-					pyright = function()
-						local lspconfig = require("lspconfig")
-						lspconfig["pyright"].setup({
-							capabilities = capabilities,
-							settings = {
-								python = {
-									analysis = {
-										autoSearchPaths = true,
-										diagnosticMode = "workspace",
-										useLibraryCodeForTypes = true,
-										typeCheckingMode = "basic",
-									},
-								},
-							},
-						})
-					end,
 					svelte = function()
 						local lspconfig = require("lspconfig")
 						lspconfig["svelte"].setup({
@@ -181,14 +177,15 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
+					vim.api.nvim_buf_set_option(ev.buf, "omnifunc", "v:lua.vim.lsp.omnifunc")
 					local opts = { buffer = ev.buf, silent = true, noremap = true }
 
 					vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 					vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
 				end,
