@@ -10,6 +10,7 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
+			local builtin = require("telescope.builtin")
 
 			telescope.setup({
 				defaults = {
@@ -22,8 +23,6 @@ return {
 						".obsidian",
 						".Trash",
 						".sum",
-						".yaml",
-						".yml",
 						"package.json",
 						"package-lock.json",
 						"yarn.lock",
@@ -35,8 +34,8 @@ return {
 					path_display = { "smart" },
 					mappings = {
 						i = {
-							["<C-k>"] = actions.move_selection_previous,
-							["<C-j>"] = actions.move_selection_next,
+							["<C-l>"] = actions.move_selection_previous,
+							["<C-k>"] = actions.move_selection_next,
 							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						},
 					},
@@ -62,6 +61,11 @@ return {
 			vim.keymap.set("n", "<leader>ph", ":Telescope help_tags<CR>", opts)
 			vim.keymap.set("n", "<leader>pk", ":Telescope keymaps<CR>", opts)
 			vim.keymap.set("n", "<leader>pb", ":Telescope buffers<CR>", opts)
+
+			vim.keymap.set("n", "<leader>pS", function()
+				local word = vim.fn.expand("<cWORD>")
+				builtin.grep_string({ search = word })
+			end, { desc = "Find Connected Words under cursor" })
 		end,
 	},
 }

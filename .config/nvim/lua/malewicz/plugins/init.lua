@@ -4,5 +4,4 @@ return {
 		name = "plenary",
 	},
 	"eandrju/cellular-automaton.nvim",
-	"christoomey/vim-tmux-navigator",
 }

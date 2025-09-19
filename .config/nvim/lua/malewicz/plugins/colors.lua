@@ -18,6 +18,22 @@ end, {
 	end,
 })
 
+vim.api.nvim_create_user_command("Mcolorscheme", function(opts)
+	vim.cmd.colorscheme(opts.args)
+end, {
+	nargs = 1,
+	complete = function()
+		return {
+			"monokai-pro",
+			"monokai-pro-classic",
+			"monokai-pro-default",
+			"monokai-pro-octagon",
+			"monokai-pro-ristretto",
+			"monokai-pro-spectrum",
+		}
+	end,
+})
+
 function ColorMyPensils(color)
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)
@@ -38,10 +54,17 @@ return {
 		"NTBBloodbath/sweetie.nvim",
 	},
 	{
+		"loctvl842/monokai-pro.nvim",
+		config = function()
+			require("monokai-pro").setup()
+		end,
+	},
+	{
 		"rose-pine/neovim",
 		name = "rose-pine",
+		priority = 1000,
 		config = function()
-			vim.cmd("colorscheme kanagawa")
+			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 	{

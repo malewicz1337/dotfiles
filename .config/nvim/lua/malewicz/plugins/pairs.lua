@@ -1,6 +1,10 @@
 return {
 	{
 		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
 		lazy = false,
 		config = function()
 			local npairs = require("nvim-autopairs")
@@ -14,7 +18,7 @@ return {
 					java = false,
 				},
 				fast_wrap = {
-					map = "<C-z>",
+					map = "<C-x>",
 				},
 			})
 
@@ -24,6 +28,10 @@ return {
 				Rule("%", "%", "lua"):with_pair(ts_conds.is_ts_node({ "string", "comment" })),
 				Rule("$", "$", "lua"):with_pair(ts_conds.is_not_ts_node({ "function" })),
 			})
+
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 	{
@@ -37,9 +45,6 @@ return {
 					enable_rename = true,
 					enable_close_on_slash = false,
 				},
-				-- Also override individual filetype configs, these take priority.
-				-- Empty by default, useful if one of the "opts" global settings
-				-- doesn't work well in a specific filetype
 				per_filetype = {
 					["html"] = {
 						enable_close = true,

@@ -51,12 +51,4 @@ vim.opt.showmode = false
 vim.opt.autoread = true
 vim.opt.wildmenu = true
 vim.opt.linebreak = true
-vim.opt.lazyredraw = true
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.api.nvim_set_hl(0, "YankHighlight", { bg = "white", fg = "black" })
-		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 100 })
-	end,
-})
+vim.opt.lazyredraw = false
