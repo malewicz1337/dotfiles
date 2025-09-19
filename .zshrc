@@ -1,4 +1,6 @@
 # ZSH and Oh-My-Z
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -10,7 +12,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto      
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -18,10 +20,8 @@ source $ZSH/oh-my-zsh.sh
 
 # GO ENV
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -75,7 +75,28 @@ eval "$(zoxide init zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Yandex CLI
-if [ -f '/Users/malewicz/yandex-cloud/path.bash.inc' ]; then source '/Users/malewicz/yandex-cloud/path.bash.inc'; fi
-if [ -f '/Users/malewicz/yandex-cloud/completion.zsh.inc' ]; then source '/Users/malewicz/yandex-cloud/completion.zsh.inc'; fi
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+# Initialize pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
 
+export MANPAGER="nvim +Man!"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/malewicz/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/malewicz/.dotnet/tools"
+
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+
+set -o vi
