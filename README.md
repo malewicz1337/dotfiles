@@ -46,7 +46,7 @@ You want this curse upon your own house? Seriously? Fine. Who am I to stand in t
 
 1.  Clone this repository somewhere you'll forget about it.
     ```bash
-    git clone [https://github.com/malewicz1337/dotfiles.git](https://github.com/malewicz1337/dotfiles.git) ~/.dotfiles
+    git clone https://github.com/malewicz1337/dotfiles.git ~/.dotfiles
     ```
 2.  Run some sort of symlinking script that you haven't written yet but swear you will. Or just copy-paste them manually. I don't care. Your life, your rules.
 3.  Spend the next 48 hours debugging why your terminal prompt is now just the `?` character and nothing works.
