@@ -12,7 +12,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto      
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting) # -poetry
+zstyle ':omz:ZSH_COMPDUMP' use-cache yes
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/malewicz/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
+# End of Docker CLI completions
+
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -20,13 +28,30 @@ source $ZSH/oh-my-zsh.sh
 
 # GO ENV
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/opt/homebrew/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+# NVM (Lazy Loaded for Speed)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+
+load_nvm() {
+  unalias nvm node npm
+  unset -f load_nvm
+
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+  "$@"
+}
+
+alias nvm="load_nvm nvm"
+alias node="load_nvm node"
+alias npm="load_nvm npm"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # FZF
@@ -85,11 +110,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export MANPAGER="nvim +Man!"
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/malewicz/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/malewicz/.dotnet/tools"
